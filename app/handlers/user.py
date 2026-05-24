@@ -63,10 +63,6 @@ async def get_comment(message: Message, state: FSMContext, bot: Bot):
 
     await state.update_data(comment=message.text)
 
-    await bot.send_message(
-    ADMIN_ID,
-    "423023042"
-)
     data = await state.get_data()
 
     await message.answer(
@@ -76,5 +72,14 @@ async def get_comment(message: Message, state: FSMContext, bot: Bot):
         f"Телефон: {data['phone']}\n"
         f"Комментраий: {data['comment']}"
     )
+
+    await bot.send_message(
+      ADMIN_ID,
+        f"Новая заявка!\n\n"
+        f"Имя: {data['name']}\n"
+        f"Возраст: {data['age']}\n"
+        f"Телефон: {data['phone']}\n"
+        f"Комментарий: {data['comment']}"
+)
 
     await state.clear()
