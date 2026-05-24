@@ -59,7 +59,7 @@ async def get_phone(message: Message, state: FSMContext):
     await message.answer("Введите ваш комментарий к заказу:")
 
 @router.message(Form.comment)
-async def get_comment(message: Message, state: FSMContext, bot: Bot):
+async def get_comment(message: Message, state: FSMContext):
 
     await state.update_data(comment=message.text)
 
@@ -73,7 +73,7 @@ async def get_comment(message: Message, state: FSMContext, bot: Bot):
         f"Комментраий: {data['comment']}"
     )
 
-    await bot.send_message(
+    await message.bot.send_message(
       ADMIN_ID,
         f"Новая заявка!\n\n"
         f"Имя: {data['name']}\n"
