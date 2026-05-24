@@ -3,10 +3,13 @@ from aiogram.filters import CommandStart
 from aiogram.types import Message
 from aiogram import F
 from aiogram.fsm.context import FSMContext
+from aiogram import Bot
 
 
 from app.keyboards.reply import main_keyboard
 from app.states.form import Form
+from app.config import ADMIN_ID
+
 
 router = Router()
 
@@ -40,7 +43,7 @@ async def get_age(message: Message, state: FSMContext):
     if not message.text.isdigit():
        return await message.answer("Ошибка! Введите, пожалуйста ваш  возраст только цифрами (Например: 25)")
 
-    await state.update_data(age=message.text)
+    await state.update_data(age=int(message.text))
 
     await state.set_state(Form.phone)
 
@@ -56,10 +59,14 @@ async def get_phone(message: Message, state: FSMContext):
     await message.answer("Введите ваш комментарий к заказу:")
 
 @router.message(Form.comment)
-async def get_comment(message: Message, state: FSMContext):
+async def get_comment(message: Message, state: FSMContext, bot: Bot):
 
     await state.update_data(comment=message.text)
 
+    await bot.send_message(
+    ADMIN_ID,
+    "423023042"
+)
     data = await state.get_data()
 
     await message.answer(
