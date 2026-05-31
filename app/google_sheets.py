@@ -17,9 +17,13 @@ sheet = client.open("Заявки ТГ бота тест").sheet1
 
 
 def add_application(name, age, phone, comment):
+    print("Пытаюсь записать в таблицу")
+
     sheet.append_row([
         name,
         age,
         phone,
         comment
     ])
+
+    print("Запись добавлена")
