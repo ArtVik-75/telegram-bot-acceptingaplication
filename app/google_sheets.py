@@ -11,7 +11,7 @@ SCOPES = [
 
 credentials_dict = json.loads(os.getenv("CREDENTIALS_JSON"))
 
-creds = Credentials.from_service_account_file("credentials.json", scopes=SCOPES)
+creds = Credentials.from_service_account_info("credentials.json", scopes=SCOPES)
 
 client = gspread.authorize(creds)
 
