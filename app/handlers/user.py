@@ -9,6 +9,7 @@ from aiogram import Bot
 from app.keyboards.reply import main_keyboard
 from app.states.form import Form
 from app.config import ADMIN_ID
+from app.google_sheets import add_application
 
 
 router = Router()
@@ -64,6 +65,14 @@ async def get_comment(message: Message, state: FSMContext):
     await state.update_data(comment=message.text)
 
     data = await state.get_data()
+
+    
+    add_application(
+        data["name"],
+        data["age"],
+        data["phone"],
+        data["comment"]
+    )
 
     await message.answer(
         f"Спасибо за заявку!\n\n"
