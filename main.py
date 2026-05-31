@@ -1,5 +1,6 @@
 import os
 import asyncio
+# Cache-bust: force clean rebuild to reinstall all dependencies fresh
 
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
