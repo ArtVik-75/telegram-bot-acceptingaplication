@@ -9,7 +9,7 @@ SCOPES = [
     "https://www.googleapis.com/auth/drive",
 ]
 
-credentials_dict = json.loads(os.getenv("GOOGLE_CREDENTIALS"))
+credentials_dict = json.loads(os.getenv("CREDENTIALS_JSON"))
 
 creds = Credentials.from_service_account_info(
     credentials_dict,
