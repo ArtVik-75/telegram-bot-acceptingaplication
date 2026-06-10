@@ -62,17 +62,19 @@ async def get_phone(message: Message, state: FSMContext):
 @router.message(Form.comment)
 async def get_comment(message: Message, state: FSMContext):
 
-    await state.update_data(comment=message.text, telegram_id=message.from_user.id)
+    await state.update_data(comment=message.text)
 
     data = await state.get_data()
+    
+    telegram_id = message.from_user.id
 
     
     add_application(
+        data["telegram_id"],
         data["name"],
         data["age"],
         data["phone"],
         data["comment"],
-        data["telegram_id"]
     )
 
     await message.answer(
