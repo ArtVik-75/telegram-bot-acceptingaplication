@@ -64,13 +64,13 @@ async def get_comment(message: Message, state: FSMContext):
 
     await state.update_data(comment=message.text)
 
-    await state.get_data(telegram_id=message.from_user.id)
-
     data = await state.get_data()
+
+    telegram_id = message.from_user.id
 
     
     add_application(
-        data["telegram_id"],
+        telegram_id,
         data["name"],
         data["age"],
         data["phone"],
