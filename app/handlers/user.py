@@ -52,6 +52,7 @@ async def get_age(message: Message, state: FSMContext):
 
 @router.message(Form.phone)
 async def get_phone(message: Message, state: FSMContext):
+    print("ХЕНДЛЕР СРАБОТАЛ")
 
     phone = message.text.strip()
 
