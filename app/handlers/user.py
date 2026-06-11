@@ -92,8 +92,11 @@ async def get_comment(message: Message, state: FSMContext):
 
     telegram_id = message.from_user.id
 
+    username = message.from_user.username
+
     
     add_application(
+        username,
         telegram_id,
         data["name"],
         data["age"],
