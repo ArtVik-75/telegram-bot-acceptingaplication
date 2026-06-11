@@ -70,7 +70,7 @@ async def get_comment(message: Message, state: FSMContext):
 
     
     add_application(
-        telegram_id,
+        data["telegram_id"],
         data["name"],
         data["age"],
         data["phone"],
