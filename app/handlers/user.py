@@ -70,7 +70,7 @@ async def get_phone(message: Message, state: FSMContext):
         or not phone.isdigit()
         or not (phone.startswith("7") or phone.startswith("8"))
     ):
-        return await message.answer("Ошибка! Введите, пожалуйста корректный номер телефон в формате +7 или 8")
+        return await message.answer("Ошибка! Введите, пожалуйста корректный номер телефон в формате +7 или 8 (11 цифр)")
     
     
     if phone.startswith("8"):
