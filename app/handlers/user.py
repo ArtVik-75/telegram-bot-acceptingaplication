@@ -53,7 +53,31 @@ async def get_age(message: Message, state: FSMContext):
 @router.message(Form.phone)
 async def get_phone(message: Message, state: FSMContext):
 
-    await state.update_data(phone=message.text)
+    phone = message.text.strip()
+
+    phone = (
+        phone
+        .replace(" ", "")
+        .replace("(", "")
+        .replace(")", "")
+        .replace("-", "")
+        .replace("+", "")
+    )
+
+    if (
+        len(phone) != 11
+        or not phone.isdigit()
+        or not (phone.startswith("7") or phone.startswith("8"))
+    ):
+        return message.answer("Ошибка! Введите, пожалуйста корректный номер телефон в формате +7 или 8")
+    
+    
+    if phone.startswith("8"):
+        phone = "+7" + phone[1:]
+    else:
+        phone = "+" + phone
+
+    await state.update_data(phone=phone)
 
     await state.set_state(Form.comment)
 
