@@ -22,7 +22,7 @@ client = gspread.authorize(creds)
 sheet = client.open("Заявки ТГ бота тест").sheet1
 
 
-def add_application(datetime, telegram_id, name, age, phone, comment):
+def add_application(telegram_id, name, age, phone, comment):
     print("Пытаюсь записать в таблицу")
 
     sheet.append_row([datetime.now().strftime("%d.%m.%Y %H:%M"), telegram_id, name, age, phone, comment])
